@@ -1,12 +1,10 @@
 def identify_tiff(data):
     if len(data) < 4:
         return
-    if data[0:2] == b'MM':
-        if int.from_bytes(data[2:4], byteorder='big') == 42:
-            return 'tiff'
-    if data[0:2] == b'II':
-        if int.from_bytes(data[2:4], byteorder='little') == 42:
-            return 'tiff'
+    if data[0:2] == b'MM' and data[2:4] == b'\x00*':
+        return 'tiff'
+    if data[0:2] == b'II' and data[2:4] == b'*\x00':
+        return 'tiff'
 
 
 def identify_bmp(data):

@@ -7,7 +7,7 @@ def test_detect():
             'pbm','pgm','ppm','bmp','tiff',
             'gif','png','jpeg','webp',
             'heic','avif']:
-        for fn in glob.glob(f'tests/images/{fmt}/*'):
+        for fn in glob.glob('tests/images/{}/*'.format(fmt)):
             print(fn)
             with open(fn, 'rb') as f:
                 data = f.read()
